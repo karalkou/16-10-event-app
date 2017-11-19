@@ -8,14 +8,6 @@ import {eventList} from './fixtures'
 
 export default class Root extends Component {
     render() {
-        let mock = {
-            "month" : "March",
-            "submissionDeadline" : "",
-            "title" : "Design it; Build it",
-            "url" : "http://www.dibiconference.com",
-            "when" : "March 30-31, 2017",
-            "where" : "Edinburgh, Scotland"
-        };
         return (
             <View style = {styles.container}>
                 <Image
@@ -23,8 +15,7 @@ export default class Root extends Component {
                     style = {styles.logo}
                     resizeMode={Image.resizeMode.contain}
                 />
-                {/*<EventList events = {eventList} />*/}
-                <EventScreen event = {mock} />
+                <EventScreen event = {eventList[0]} />
             </View>
         )
     }

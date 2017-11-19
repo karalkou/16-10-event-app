@@ -1,22 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Root from './src/Root'
+import React from 'react'
+import './src/fbSetup'
+import {addNavigationHelpers} from 'react-navigation'
+import AppNavigator from './src/AppNavigator'
+import {Provider, observer} from 'mobx-react'
+import {useStrict} from 'mobx'
+import stores from './src/stores'
+useStrict()
 
+@observer
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-          <Root/>
-      </View>
-    );
-  }
+    render() {
+        console.log('---', 1111)
+        return (
+            <Provider {...stores}>
+                <AppNavigator navigation = {addNavigationHelpers({
+                    dispatch: stores.navigation.dispatch,
+                    state: stores.navigation.state
+                })}/>
+            </Provider>
+        )
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
